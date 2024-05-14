@@ -4,7 +4,7 @@ import {  signup,login ,logout  } from '../controller/auth.controller.js';
 const router=express.Router();
 
 
-router.get('/api/auth/signup' , signup);
+router.post('/api/auth/signup' , signup);
 
 router.get('/api/auth/login' , login );
 

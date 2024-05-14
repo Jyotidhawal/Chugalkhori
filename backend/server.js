@@ -1,4 +1,4 @@
-
+import cors from 'cors'
 import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
@@ -12,11 +12,16 @@ import connectionToMongo from "./db/connection.js";
 
 const app = express();
 dotenv.config();
+ app.use(cors());
 
 app.use(express.json());
 app.use(cookieParser());
 
-const port=3000;
+const port=4000;
+
+app.get("/", (req, res) => {
+    res.send("Hello World");
+  });
 
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
@@ -44,6 +49,6 @@ app.use("/api/users", userRoutes);
 
 app.listen(port,()=> {
     connectionToMongo();
-    console.log("server listening on port 3000")
+    console.log(`server listening on port ${port}`)
 }
 );

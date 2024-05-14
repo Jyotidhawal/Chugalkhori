@@ -1,9 +1,9 @@
-import  Mongoose   from "mongoose";
+import  mongoose   from "mongoose";
 
 const URL="mongodb://127.0.0.1:27017/shinchan-gift"
 const connectionToMongo=async()=>{
     try {
-        await Mongoose.connect(URL);
+        await mongoose.connect(URL);
         console.log("Connected to Mongoodb");
 
     } catch (error) {

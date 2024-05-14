@@ -6,6 +6,7 @@ import generateToken from "../utils/generateToken.js";
 export const signup=async(req,res)=>{
 
     try {
+        console.log("at backend of signup")
         const {fullname, username, password , confirmpassword,gender} = req.body;
 
         if(password!==confirmpassword){
@@ -22,21 +23,17 @@ export const signup=async(req,res)=>{
         const salt=await bcryptjs.genSalt(10);
         const hashedPassword=await bcryptjs.hash(password,salt);
 
-        const boyprofilePic="https://avatar.iran.liara.run/public/boy?username=${username}";
+        const boyprofilePic='https://avatar.iran.liara.run/public/boy?username=${username}';
         const girlprofilePic='https://avatar.iran.liara.run/public/girl?username=${username}';
      
         const newUser=new User({
             fullname,
             username,
             password : hashedPassword,
-            
             gender,
-           profilePic:gender==="male" ? boyprofilePic : girlprofilePic
+            profilePic:gender==='male' ? boyprofilePic : girlprofilePic
         });
 
-
-
-        
 
         if(newUser){
             // generate jwt token here
